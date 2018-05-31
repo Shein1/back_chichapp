@@ -1,0 +1,28 @@
+{
+	"name": "sw",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"scripts": {
+		"start": "nodemon server.js --exec babel-node",
+		"seed_chicha": "babel-node ./seeders/seed_chicha",
+		"seed_store": "babel-node ./seeders/seed_store"
+	},
+	"dependencies": {
+		"axios": "^0.18.0",
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.7.0",
+		"babel-preset-stage-1": "^6.24.1",
+		"bcrypt": "^2.0.1",
+		"body-parser": "^1.18.3",
+		"colors": "^1.2.5",
+		"dotenv": "^5.0.1",
+		"express": "^4.16.3",
+		"passport": "^0.4.0",
+		"passport-jwt": "^4.0.0",
+		"passport-local": "^1.0.0",
+		"pg": "^7.4.3",
+		"pg-hstore": "^2.3.2",
+		"sequelize": "^4.37.7"
+	}
+}
