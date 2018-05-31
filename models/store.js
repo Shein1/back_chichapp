@@ -20,6 +20,15 @@ export default class Store extends Model {
         },
         schedule: {
           type: DataTypes.ARRAY(DataTypes.STRING)
+        },
+        ref_photo: {
+          type: DataTypes.STRING
+        },
+        latitude: {
+          type: DataTypes.STRING
+        },
+        longitude: {
+          type: DataTypes.STRING
         }
       },
       {

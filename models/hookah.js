@@ -23,6 +23,12 @@ export default class Hookah extends Model {
         },
         ref_photo: {
           type: DataTypes.STRING
+        },
+        latitude: {
+          type: DataTypes.STRING
+        },
+        longitude: {
+          type: DataTypes.STRING
         }
       },
       {

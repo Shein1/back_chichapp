@@ -2,14 +2,15 @@ import { db as database } from '../models';
 import Hookah from '../models/hookah';
 import axios from 'axios';
 import { SETTINGS } from '../constants/index';
-const API = SETTINGS.MAPS_API;
+
+import dotenv from 'dotenv';
+dotenv.config();
 
 database
   .sync()
   .then(async () => {
-    let baseURL = API.BASE_URL;
-    let apiKey = API.API_KEY;
-    let location = API.LOCATION;
+    let baseURL = process.env.BASE_URL;
+    let apiKey = process.env.API_KEY;
     let query = 'chicha+in+paris';
 
     axios
@@ -24,13 +25,14 @@ database
             )
             .then(async response => {
               const hookah_res = response.data.result;
-              console.log(hookah_res.photos);
               let hookah = new Hookah({
                 name: hookah_res.name,
                 adress: hookah_res.formatted_address,
                 rating: hookah_res.rating,
                 schedule: hookah_res.opening_hours.weekday_text,
-                ref_photo: hookah_res.photos[0].photo_reference
+                ref_photo: hookah_res.photos[0].photo_reference,
+                latitude: hookah_res.geometry.location.lat,
+                longitude: hookah_res.geometry.location.lng
               });
               await hookah.save();
             });

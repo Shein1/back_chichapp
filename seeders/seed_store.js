@@ -2,14 +2,15 @@ import { db as database } from '../models';
 import Store from '../models/store';
 import axios from 'axios';
 import { SETTINGS } from '../constants/index';
-const API = SETTINGS.MAPS_API;
+
+import dotenv from 'dotenv';
+dotenv.config();
 
 database
   .sync()
   .then(async () => {
-    let baseURL = API.BASE_URL;
-    let apiKey = API.API_KEY;
-    let location = API.LOCATION;
+    let baseURL = process.env.BASE_URL;
+    let apiKey = process.env.API_KEY;
     let query = 'magasin+chicha+paris';
 
     axios
@@ -18,7 +19,6 @@ database
       )
       .then(response => {
         const res = response.data.results;
-        console.log(res);
         for (var i = 0; i < res.length; i++) {
           axios
             .get(
@@ -31,7 +31,9 @@ database
                 adress: store_res.formatted_address,
                 rating: store_res.rating,
                 schedule: store_res.opening_hours.weekday_text,
-                ref_photo: store_res.photos[0].photo_reference
+                ref_photo: store_res.photos[0].photo_reference,
+                latitude: store_res.geometry.location.lat,
+                longitude: store_res.geometry.location.lng
               });
               await store.save();
             });
