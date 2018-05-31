@@ -1,7 +1,6 @@
 import { db as database } from '../models';
 import Hookah from '../models/hookah';
 import axios from 'axios';
-import { SETTINGS } from '../constants/index';
 
 import dotenv from 'dotenv';
 dotenv.config();
