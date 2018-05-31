@@ -24,11 +24,13 @@ database
             )
             .then(async response => {
               const hookah_res = response.data.result;
+              console.log(hookah_res.photos);
               let hookah = new Hookah({
                 name: hookah_res.name,
                 adress: hookah_res.formatted_address,
                 rating: hookah_res.rating,
-                schedule: hookah_res.opening_hours.weekday_text
+                schedule: hookah_res.opening_hours.weekday_text,
+                ref_photo: hookah_res.photos[0].photo_reference
               });
               await hookah.save();
             });

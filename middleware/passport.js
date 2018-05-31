@@ -6,6 +6,8 @@ import User from '../models/user';
 import dotenv from 'dotenv';
 dotenv.config();
 
+// Initialize LocalStrategy process
+
 passport.use(
   new LocalStrategy(
     {
@@ -31,6 +33,8 @@ passport.use(
   )
 );
 
+// Initialize JWTStrategy process
+
 passport.use(
   new JWTStrategy(
     {
@@ -38,9 +42,9 @@ passport.use(
       secretOrKey: process.env.JWT_ENCRYPTION
     },
     async (jwtPayload, done) => {
-      let user = await User.findOne({ where: { id: jwtPayload.id } });
+      let user = await User.findOne({ where: { uuid: jwtPayload.uuid } });
       if (!user) {
-        return done(`User ${id} doesn't exist`);
+        return done(`User ${uuid} doesn't exist`);
       }
 
       done(false, user);

@@ -11,6 +11,11 @@ export default class User extends Model {
           autoIncrement: true,
           primaryKey: true
         },
+        uuid: {
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
+          allowNull: false
+        },
         nickname: {
           type: DataTypes.STRING,
           allowNull: false

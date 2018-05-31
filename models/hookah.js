@@ -20,6 +20,9 @@ export default class Hookah extends Model {
         },
         schedule: {
           type: DataTypes.ARRAY(DataTypes.STRING)
+        },
+        ref_photo: {
+          type: DataTypes.STRING
         }
       },
       {

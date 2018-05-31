@@ -29,7 +29,9 @@ database
               let store = new Store({
                 name: store_res.name,
                 adress: store_res.formatted_address,
-                rating: store_res.rating
+                rating: store_res.rating,
+                schedule: store_res.opening_hours.weekday_text,
+                ref_photo: store_res.photos[0].photo_reference
               });
               await store.save();
             });

@@ -14,6 +14,12 @@ export default class Store extends Model {
         },
         adress: {
           type: DataTypes.STRING
+        },
+        ref_photo: {
+          type: DataTypes.STRING
+        },
+        schedule: {
+          type: DataTypes.ARRAY(DataTypes.STRING)
         }
       },
       {
